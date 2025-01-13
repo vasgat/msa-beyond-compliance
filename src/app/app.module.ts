@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -115,7 +115,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     ExportAsModule,
     ClipboardModule,
     NgcCookieConsentModule.forRoot(cookieConfig)],
-  providers: [SectorProvider, DataProvider, ChartsService, provideHttpClient(withInterceptorsFromDi())]
+  providers: [SectorProvider, DataProvider, ChartsService, provideHttpClient(withInterceptorsFromDi()), provideClientHydration(withEventReplay())]
 })
 export class AppModule {
 }
